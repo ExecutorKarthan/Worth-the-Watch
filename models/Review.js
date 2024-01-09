@@ -23,10 +23,17 @@ Review.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
+    reviewer_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'reviewer',
+        key: 'id',
+      },
+    },
+    movie_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'movie',
         key: 'id',
       },
     },
