@@ -16,3 +16,22 @@ router.get('/reviewers', withAuth, async (req, res) =>{
         res.status(500).json(err);
       }
 });
+
+router.get('/reviewers/:id', withAuth, async (req, res) =>{
+  try {
+      const reviewsByID = await Review.findAll({
+        where:{
+          reviewer_id: req.params.id,
+        }
+      })      
+  
+      const reviews = reviewsByID.map((post) =>
+        post.get({ plain: true })
+      );
+  
+      res.render('reviewers-reviews');
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+});
