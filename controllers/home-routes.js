@@ -58,5 +58,18 @@ router.get('/reviewers/:id', withAuth, async (req, res) =>{
     }
 });
 
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);
+    const reviewer = reviewerData.get({ plain: true });
+      res.render('dashboard',
+        reviewer, 
+      )
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //Export the newly adjusted router
 module.exports = router;

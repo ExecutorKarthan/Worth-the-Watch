@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-        const reviewerData = await Reviewer.findOne({ where: { email: req.body.email }});
+        const reviewerData = await Reviewer.findOne({ where: { username: req.body.username }});
 
         if(!reviewerData) {
             res
