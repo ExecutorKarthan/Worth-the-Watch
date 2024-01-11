@@ -35,3 +35,16 @@ router.get('/reviewers/:id', withAuth, async (req, res) =>{
       res.status(500).json(err);
     }
 });
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);
+    const reviewer = reviewerData.get({ plain: true });
+      res.render('dashboard',
+        reviewer, 
+      )
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
