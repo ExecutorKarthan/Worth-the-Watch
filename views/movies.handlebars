@@ -1,0 +1,17 @@
+<div class="header">
+    <h1>{{Worth the Watch?}}</h1>
+    {{!-- needs path to sign-up and login pages --}}
+    <a href="">{{Sign Up}}</a>
+    <a href="">{{Login}}</a>
+</div>
+
+<div class="search-section">
+    <input class="search-bar" type="text" placeholder="Search">
+    <button class="search-btn">{{Confirm}}</button>
+</div>
+
+<section class="flex-row justify-center">
+    {{#each movies as |movie|}}
+        {{> list-movies}}
+    {{/each}}
+</section>
