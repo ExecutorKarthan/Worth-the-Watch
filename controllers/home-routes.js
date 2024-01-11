@@ -71,5 +71,14 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+
+  res.render('login');
+});
+
 //Export the newly adjusted router
 module.exports = router;
