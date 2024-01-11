@@ -1,9 +1,7 @@
 const router = require('express').Router();
-const { Reviewer, Review } = require('../../models');
-const withAuth = require('../../util/auth');
+const { Reviewer } = require('../../models');
 
-
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try{
         const reviewerData = await Reviewer.create(req.body);
 
@@ -20,7 +18,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
     try{
         const reviewerData = await Reviewer.findOne({ where: { username: req.body.username }});
-
+        console.log(reviewerData)
         if(!reviewerData) {
             res
                 .status(400)
