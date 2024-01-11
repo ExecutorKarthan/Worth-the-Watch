@@ -8,7 +8,7 @@ class Reviewer extends Model {
   }
 }
 
-User.init(
+Reviewer.init(
   {
     id: {
       type: DataTypes.INTEGER,
