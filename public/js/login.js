@@ -11,6 +11,7 @@ const reviewerLogin = async (event) => {
         });
         if (response.ok) {
             document.location.replace('/dashboard');
+            alert("Login Successful");
         } else {
             alert(response.statusText);
         }
