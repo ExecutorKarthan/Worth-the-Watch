@@ -1,4 +1,4 @@
-const search = () => {
+/*const search = () => {
     const searchQuery = document.querySelector(".search-bar").value.trim();
 
     if (searchQuery !== null) {
@@ -7,4 +7,4 @@ const search = () => {
         } 
     };
 
-document.querySelector(".search-btn").addEventListener("click", search);
+document.querySelector(".search-btn").addEventListener("click", search);*/
