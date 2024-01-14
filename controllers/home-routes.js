@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     );
     res.render('home', {
         reviews,
-        loggedIn: req.session.loggedIn,
+        logged_in: req.session.logged_in,
       });
   } catch(err) {
       res.status(400).json(err);
@@ -62,9 +62,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);
     const reviewer = reviewerData.get({ plain: true });
-      res.render('dashboard',
+      res.render('dashboard', {
         reviewer, 
-      )
+        logged_in: req.session.logged_in,
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

@@ -17,7 +17,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+            {{#if logged_in}}
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+            {{else}}
             <a class="nav-item nav-link" href="/login">Login</a>
+             {{/if}}
             </div>
         </div>
     </nav>

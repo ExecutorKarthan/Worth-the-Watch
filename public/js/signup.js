@@ -12,6 +12,7 @@ const reviewerSignUp = async (event) => {
         });
         if (response.ok) {
             document.location.replace('/dashboard');
+            alert("Sign up successful");
         } else {
             alert(response.statusText);
         }
