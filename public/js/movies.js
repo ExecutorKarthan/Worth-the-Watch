@@ -39,11 +39,10 @@ const search = async (event) => {
                 const remoteMovieData = await fetch(`/api/tmdb/movie/remote-query/${query}`, {
                     method: 'GET',
                 }).then((response) => response.json())
-                console.log(remoteMovieData)
-                console.log(remoteMovieData.results.length)
                 if(remoteMovieData.results.length > 0){
                     document.location.replace(`/search-results-list`)
                 }
+                //Add a message that no movie was found
             }
             catch (err){
                 console.log(err)

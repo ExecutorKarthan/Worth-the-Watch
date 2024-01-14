@@ -75,7 +75,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/search-results-list', async (req, res) => {
   try {
     const query_results = req.session.query_results
-    console.log("Results in render section", query_results.results)
     res.render('search-results', {
       results: query_results.results,
       logged_in: req.session.logged_in,
