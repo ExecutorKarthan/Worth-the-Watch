@@ -19,7 +19,7 @@ router.get('/tmdb/movie/local-query', async (req, res) =>{
     }
   });
 
-  router.get('/movie/remote-query/:id', async (req, res) =>{
+  router.get('/movie/remote-query', async (req, res) =>{
     try{
         var TMDBUrl = 'https://api.themoviedb.org/3/search/movie?query='+ req.params.id
         const remoteResponse = await fetch(TMDBUrl, {
