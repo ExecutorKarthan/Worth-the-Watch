@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Reviewer, Review } = require('../models');
+const { Movie, Reviewer, Review } = require('../models');
 const withAuth = require('../util/auth');
 
 router.get('/', async (req, res) => {
@@ -66,6 +66,21 @@ router.get('/dashboard', withAuth, async (req, res) => {
         reviewer, 
         logged_in: req.session.logged_in,
       });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/search-results-list', async (req, res) => {
+  try {
+    const query_results = req.session.query_results
+    console.log("Results in render section", query_results.results)
+    res.render('search-results', {
+      results: query_results.results,
+      logged_in: req.session.logged_in,
+    });
+      
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
