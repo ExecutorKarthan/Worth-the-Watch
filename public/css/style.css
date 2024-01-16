@@ -35,3 +35,8 @@ a:active {
 .search-section{
     text-align: center;
 }
+
+img{
+    max-width: 50%;
+    max-height: 50%;
+}

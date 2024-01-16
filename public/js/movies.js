@@ -46,23 +46,7 @@ const search = async (event) => {
             }
             catch (err){
                 console.log(err)
-            }
-            
-                //create db entry
-                // const response = await fetch('/api/reviewers/logout', {
-                //     method: 'POST',
-                //     body: JSON.stringify({remoteMovieData}),
-                //     headers: { 'Content-Type': 'application/json' },
-                // });
-
-                //render to a page
-            //} 
-            //else {
-            //    alert(remoteMovieData.statusText);
-            //};
-        //} 
-        //else {
-                  
+            }                 
     }     
 };
 
