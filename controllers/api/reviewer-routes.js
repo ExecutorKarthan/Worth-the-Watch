@@ -2,7 +2,17 @@ const router = require('express').Router();
 const { Reviewer } = require('../../models');
 
 router.post('/signup', async (req, res) => {
-    try{
+    try {
+        const existingReviewer = await Reviewer.findOne({
+            where: { username: req.body.username },
+        });
+
+
+        if (existingReviewer) {
+            return res.status(400).json({ message: 'Username already exists' });
+        }
+
+
         const reviewerData = await Reviewer.create(req.body);
 
         req.session.save(() => {
@@ -10,8 +20,8 @@ router.post('/signup', async (req, res) => {
             req.session.logged_in = true;
             res.status(200).json(reviewerData);
         });
-    } catch(err) {
-        res.status(400).json(err);
+    } catch (err) {
+        res.status(500).json(err);
     }
 });
 
@@ -22,7 +32,7 @@ router.post('/login', async (req, res) => {
         if(!reviewerData) {
             res
                 .status(400)
-                .json({ message: 'Incorrect email or password.' })
+                .json({ message: 'Incorrect email or password' })
             return;
         }
 
@@ -31,7 +41,7 @@ router.post('/login', async (req, res) => {
         if(!validPassword) {
             res
                 .status(400)
-                .json({ message: 'Incorrect email or password.' })
+                .json({ message: 'Incorrect email or password' })
             return;
         }
 

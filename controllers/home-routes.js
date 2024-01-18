@@ -27,11 +27,11 @@ router.get('/', async (req, res) => {
 router.get('/reviewers', withAuth, async (req, res) =>{
     try {
         const reviewerData = await Reviewer.findAll();
-    
+   
         const reviewers = reviewerData.map((post) =>
           post.get({ plain: true })
         );
-    
+   
         res.render('reviewers-list',
           reviewers,
         );
@@ -44,11 +44,11 @@ router.get('/reviewers', withAuth, async (req, res) =>{
 router.get('/reviewers/:id', withAuth, async (req, res) =>{
   try {
       const reviewsByID = await Review.findByPk({reviewer_id: req.params.id})      
-  
+ 
       const reviews = reviewsByID.map((post) =>
         post.get({ plain: true })
       );
-  
+ 
       res.render('reviewers-reviews',
       reviews,
       );
@@ -78,7 +78,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);
     const reviewer = reviewerData.get({ plain: true });
       res.render('dashboard', {
-        reviewer, 
+        reviewer,
         logged_in: req.session.logged_in,
       });
   } catch (err) {
@@ -90,12 +90,14 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/search-results-list', async (req, res) => {
   try {
     const query_results = req.session.query_results
+
     console.log(query_results)
+
     res.render('search-results', {
       results: query_results.results,
       logged_in: req.session.logged_in,
     });
-      
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -130,6 +132,25 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error destroying session:', err);
+        res.status(500).json(err);
+      } else {
+        res.render('logout');
+      }
+    })
+  } else {
+    res.redirect('/');
+  }
 });
 
 //Export the newly adjusted router
