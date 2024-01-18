@@ -11,6 +11,10 @@ footer{
   text-align: center;
 }
 
+#nav-link{
+    color: white !important;
+}
+
 .jumbotron{
     text-align:center !important;
 }
@@ -39,4 +43,9 @@ a:active {
 .logout-confirmation {
     margin-top: 50px;
     background-color: transparent;
+}
+
+img{
+    max-width: 50%;
+    max-height: 50%;
 }

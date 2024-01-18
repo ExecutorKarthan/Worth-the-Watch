@@ -1,7 +1,10 @@
 <section class="flex-row justify-center">
     {{name}}
     <p>Your Dashboard</p>
+    <a href="/reviews">Create a new review</a>
     {{#each reviews as |review|}}
         {{> list-reviews}}
+        <a href="/reviews">Edit review</a>
+        <a href="/reviews">Delete review</a>
     {{/each}}
 </section>
