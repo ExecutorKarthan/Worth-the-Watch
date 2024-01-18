@@ -1,11 +1,13 @@
 <section class="container">
   <div class = "row">
     <div class="col-md">
-        <a href="/movie/{{id}}">{{title}}</a>
+      <button type="button" class="btn btn-dark" id="review-btn" movie_id="{{id}}">Review this film</button>
     </div>
     <div class="col-md">
+      <img src='https://image.tmdb.org/t/p/original{{poster_path}}'>
+    </div>
+    <div class="col-md">
+        <p>{{title}}</p>
         <p>{{overview}}</p>
         <p>{{release_date}}</p>
     </div>
-  </div>
-</section>

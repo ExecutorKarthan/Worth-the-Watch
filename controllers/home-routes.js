@@ -58,6 +58,21 @@ router.get('/reviewers/:id', withAuth, async (req, res) =>{
     }
 });
 
+router.get('/movie/:id', withAuth, async (req, res) =>{
+  try {
+      const movieByID = await Movie.findByPk({id: req.params.id})      
+
+      const movie = movieByID.get({ plain: true })
+  
+      res.render('movie',
+      movie,
+      );
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+});
+
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);

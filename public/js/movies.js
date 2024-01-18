@@ -24,16 +24,16 @@ const search = async (event) => {
     const query = queryRefiner(searchQuery);
     if (query != "") {
 
-        // try{
-        //     const localMovieData = await fetch('/movie/query', {
-        //         method: 'GET',
-        //     });
-        // }
-        // catch (err) {
-        //     console.log(err)
-        // }
+        try{
+            const localMovieData = await fetch(`/tmdb/movie/local-query/${query}`, {
+                 method: 'GET',
+             }).then((response) => response.json())
+         }
+         catch (err) {
+             console.log(err)
+        }
 
-        //if(localMovieData){
+        if(!localMovieData){
 
             try{
                 const remoteMovieData = await fetch(`/api/tmdb/movie/remote-query/${query}`, {
@@ -49,19 +49,20 @@ const search = async (event) => {
             }
             
                 //create db entry
-                // const response = await fetch('/api/reviewers/logout', {
-                //     method: 'POST',
-                //     body: JSON.stringify({remoteMovieData}),
-                //     headers: { 'Content-Type': 'application/json' },
-                // });
+                const response = await fetch('/api/reviewers/logout', {
+                     method: 'POST',
+                     body: JSON.stringify({remoteMovieData}),
+                     headers: { 'Content-Type': 'application/json' },
+                });
 
                 //render to a page
-            //} 
-            //else {
-            //    alert(remoteMovieData.statusText);
-            //};
-        //} 
-        //else {
+            } 
+            else {
+                document.location.replace(`/movie/${localMovieData.id}`)
+                alert(remoteMovieData.statusText);
+            };
+        } 
+        else {
                   
     }     
 };
