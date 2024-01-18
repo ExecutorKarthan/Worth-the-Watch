@@ -3,11 +3,12 @@ const reviewCreate = async (event) => {
     const title = document.querySelector('#title-create').value.trim();
     const body = document.querySelector('#review-create').value.trim();
     const overview = document.querySelector('#overview').value.trim();
-    const releaseDate = document.querySelector('#release_date').value.trim();
+    const releaseDate = document.querySelector('#release-date').value.trim();
 
+    console.log(title, body, overview, releaseDate)
 
     if(title && body && overview && releaseDate) {
-        const response = await fetch('/api/review-routes/', {
+        const response = await fetch('/api/review/create-review', {
             method: 'POST',
             body: JSON.stringify({ title, body, overview, releaseDate }),
             headers: { 'Content-Type': 'application/json' }
@@ -21,4 +22,4 @@ const reviewCreate = async (event) => {
     }
 };
 
-document.querySelector('.review-form').addEventListener('submit', reviewCreate);
+document.querySelector('#post-btn').addEventListener('click', reviewCreate);
