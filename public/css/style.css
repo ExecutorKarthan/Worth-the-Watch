@@ -35,3 +35,8 @@ a:active {
 .search-section{
     text-align: center;
 }
+
+.logout-confirmation {
+    margin-top: 50px;
+    background-color: transparent;
+}
