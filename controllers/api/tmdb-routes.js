@@ -13,6 +13,7 @@ router.get('/tmdb/movie/local-query', async (req, res) =>{
          }
         ]
       });
+      res.status(200).json(movieData);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -38,17 +39,12 @@ router.get('/tmdb/movie/local-query', async (req, res) =>{
 
 router.get('/movie/:id', withAuth, async (req, res) => {
     try{
-        
+      res.status(200).json(remoteResponse);
     }
     catch (err) {
         console.log(err);
         res.status(500).json(err);  
     }
-
-})
-
-router.post('/movie-import', withAuth, async (req, res) =>{
-
 
 })
 
