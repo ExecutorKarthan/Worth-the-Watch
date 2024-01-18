@@ -11,6 +11,10 @@ footer{
   text-align: center;
 }
 
+#nav-link{
+    color: white !important;
+}
+
 .jumbotron{
     text-align:center !important;
 }
