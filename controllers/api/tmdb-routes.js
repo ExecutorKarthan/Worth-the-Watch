@@ -48,9 +48,4 @@ router.get('/movie/:id', withAuth, async (req, res) => {
 
 })
 
-router.post('/movie-import', withAuth, async (req, res) =>{
-
-
-})
-
 module.exports = router

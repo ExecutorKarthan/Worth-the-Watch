@@ -23,9 +23,9 @@ const search = async (event) => {
     const searchQuery = document.querySelector(".search-bar").value.trim();
     const query = queryRefiner(searchQuery);
     if (query != "") {
-
+        let localMovieData
         try{
-            const localMovieData = await fetch(`/tmdb/movie/local-query/${query}`, {
+            localMovieData = await fetch(`/tmdb/movie/local-query/${query}`, {
                  method: 'GET',
              }).then((response) => response.json())
          }
