@@ -148,7 +148,7 @@ router.get('/movie-import/:id', withAuth, async (req, res) =>{
       }).then((response) => response.json())
 
     const movie = remoteResponse
-    res.render('create-review',{
+    res.render('create-query-review',{
       movie,
     });
   }
@@ -159,7 +159,11 @@ router.get('/movie-import/:id', withAuth, async (req, res) =>{
 })
 
 router.get('/add-movie', withAuth, async(req,res) => {
-  try{res.render("create-review");}
+  try{
+    res.render("create-scratch-review",{
+    logged_in: req.session.logged_in,
+    });
+  }
   catch(err){
     console.log(err);
   }

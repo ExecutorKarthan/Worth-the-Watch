@@ -1,6 +1,6 @@
 <section class="container col-8 mt-4">
     <h2>Create a Review</h2>
-    <form class="form review-form">
+    <form class="form review-form" form_id="create-query-form">
         <div class="form-group m-3">
             <label for="title-create" style="font-weight: bold;">Movie Title</label>
             <p class="form-control-plaintext large-text black-text" id="title-create" movie_id="{{movie.id}}">{{movie.title}} </p>
@@ -18,7 +18,7 @@
             <textarea class="form-control half-width" id="review-create" rows="4" placeholder="Write your review here..."></textarea>
         </div>
         <div class="form-group m-2">
-            <button class="btn btn-dark" type="submit" id="post-btn">Submit</button>
+            <button class="btn btn-dark" type="submit" id="post-query-btn">Submit</button>
         </div>
     </form>
 </section>

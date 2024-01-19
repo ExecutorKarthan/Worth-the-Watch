@@ -41,13 +41,25 @@ router.get('/movie/local-query/:id', async (req, res) =>{
 
 router.post('/create-movie', withAuth, async (req, res) => {
   try{
-    const newMovie = await Movie.create({
-      title: req.body.title.toLowerCase(), 
-      overview: req.body.overview, 
-      release_date: req.body.releaseDate,
-      id: req.body.movie_id,
-      poster_path: req.body.poster_path
-  })
+    console.log(req.body.movie_id)
+    var newMovie = ""
+    if(req.body.movie_id == null){
+      newMovie = await Movie.create({
+        title: req.body.title.toLowerCase(), 
+        overview: req.body.overview, 
+        release_date: req.body.releaseDate,
+        poster_path: req.body.poster_path
+    })
+    }
+    else{
+      newMovie = await Movie.create({
+        title: req.body.title.toLowerCase(), 
+        overview: req.body.overview, 
+        release_date: req.body.releaseDate,
+        id: req.body.movie_id,
+        poster_path: req.body.poster_path
+    })
+    }
   res.status(200).json(newMovie);
 } catch(err) {
   res.status(500).json(err);

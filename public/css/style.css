@@ -58,7 +58,7 @@ img{
     text-decoration: none;
 }
 
-.review-container{
+.scratch-form, .review-container{
     background-color: white;
 }
 
@@ -66,4 +66,8 @@ img{
     border-width: 3px !important;
     background-color: black;
     color: white !important;
+}
+
+#title-create{
+    background-color: white;
 }
