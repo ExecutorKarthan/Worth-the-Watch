@@ -12,7 +12,7 @@ Movie.init(
       autoIncrement: true,
     },
     foreign_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     title: {
@@ -26,6 +26,10 @@ Movie.init(
     release_date: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    poster_path: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

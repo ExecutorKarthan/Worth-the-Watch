@@ -1,11 +1,9 @@
 const router = require('express').Router();
-const { Reviewer, Review } = require('../../models');
+const { Reviewer, Review, Movie} = require('../../models');
 const withAuth = require('../../util/auth');
 
 router.post('/create-review', withAuth, async (req, res) => {
     try{
-        console.log(req.body)
-        console.log(req.session.reviewer_id)
     const createdDate = new Date();
     const newReview = await Review.create({
         title: req.body.title,
