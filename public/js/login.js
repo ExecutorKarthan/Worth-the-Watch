@@ -10,10 +10,32 @@ const reviewerLogin = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/dashboard');
-            alert("Login Successful");
+            const successMessage = document.createElement('div');
+            successMessage.className = 'alert alert-success mt-2';
+            successMessage.innerHTML = 'Login Successful';
+            document.querySelector('.login-form').appendChild(successMessage);
+
+
+            setTimeout(function () {
+                document.location.replace('/dashboard');
+            }, 2000);
         } else {
-            alert(response.statusText);
+            const responseData = await response.json();
+
+
+            if (response.status === 401 && responseData.message.includes('Incorrect email or password')) {
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Incorrect email or password';
+                document.querySelector('.signup-form').appendChild(errorMessage);
+
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
+            } else {
+                alert(responseData.message);
+            }
         }
     }
 };
