@@ -3,17 +3,19 @@ const { query } = require('express');
 const { Movie, Reviewer, Review } = require('../../models');
 const withAuth = require('../../util/auth');
 
-router.get('/tmdb/movie/local-query', async (req, res) =>{
+router.get('/movie/local-query/:id', async (req, res) =>{
     try{
-      const movieData = await Movie.findByPk(req.params.id, {
-        include: [
-          {
-            model: Reviewer,
-            attributes: ['movie']
-         }
-        ]
+      console.log("Route query for the database ", req.params.id.replace("+", " "))
+      const movieData = await Movie.findAll({
+        where: {
+          title: req.params.id.replaceAll("+", " "),
+        }
       });
-      res.status(200).json(movieData);
+      const localMovie = {results: movieData}
+      req.session.save(() => {
+        req.session.query_results = localMovie;
+        res.status(200).json(movieData);
+    });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -37,21 +39,10 @@ router.get('/tmdb/movie/local-query', async (req, res) =>{
     }
   });
 
-router.get('/movie/:id', withAuth, async (req, res) => {
-    try{
-      res.status(200).json(remoteResponse);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json(err);  
-    }
-
-})
-
 router.post('/create-movie', withAuth, async (req, res) => {
   try{
     const newMovie = await Movie.create({
-      title: req.body.title, 
+      title: req.body.title.toLowerCase(), 
       overview: req.body.overview, 
       release_date: req.body.releaseDate,
       id: req.body.movie_id,

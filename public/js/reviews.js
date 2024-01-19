@@ -15,29 +15,45 @@ const reviewCreate = async (event) => {
     }
 
     if(title && body && overview && releaseDate) {
-        const movieResponse = await fetch('/api/tmdb/create-movie', {
-            method: 'POST',
-            body: JSON.stringify({ title, overview, releaseDate, movie_id, poster_path}),
-            headers: { 'Content-Type': 'application/json' }
-        });
-        if(movieResponse.ok) {
-            console.log('Movie successfully posted!');
-        } else {
-            alert(movieResponse.statusText);
+        var movieMissingLocal = true
+        try{
+            checkReviews = await fetch(`/api/tmdb/movie/local-query/${title}`, {
+                 method: 'GET',
+             }).then((response) => response.json())
+             if(checkReviews.length > 0){
+                movieMissingLocal = false;
+             }
+         }
+         catch (err) {
+             console.log(err)
         }
-    }
 
-    if(title && body && overview && releaseDate) {
-        const reviewResponse = await fetch('/api/review/create-review', {
-            method: 'POST',
-            body: JSON.stringify({ title, body, movie_id}),
-            headers: { 'Content-Type': 'application/json' }
-        });
-        if(reviewResponse.ok) {
-            document.location.replace('/dashboard');
-            alert('Review successfully posted!');
-        } else {
-            alert(reviewResponse.statusText);
+        if(movieMissingLocal){
+            const movieResponse = await fetch('/api/tmdb/create-movie', {
+                method: 'POST',
+                body: JSON.stringify({ title, overview, releaseDate, movie_id, poster_path}),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if(movieResponse.ok) {
+                console.log('Movie successfully posted!');
+            } else {
+                alert(movieResponse.statusText);
+            }    
+        }
+        
+
+        if(title && body && overview && releaseDate) {
+            const reviewResponse = await fetch('/api/review/create-review', {
+                method: 'POST',
+                body: JSON.stringify({ title, body, movie_id}),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if(reviewResponse.ok) {
+                document.location.replace('/dashboard');
+                alert('Review successfully posted!');
+            } else {
+                alert(reviewResponse.statusText);
+            }
         }
     }
 };
