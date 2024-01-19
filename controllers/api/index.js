@@ -1,10 +1,12 @@
 //Import needed dependencies
 const router = require('express').Router();
 
+const reviewRoutes = require('./review-routes');
 const reviewerRoutes = require('./reviewer-routes');
 const tmdbRoutes = require('./tmdb-routes');
 
 //Assign paths for each needed dependency 
+router.use('/review', reviewRoutes);
 router.use('/reviewers', reviewerRoutes);
 router.use('/tmdb', tmdbRoutes);
 

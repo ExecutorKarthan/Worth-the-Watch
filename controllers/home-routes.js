@@ -75,12 +75,17 @@ router.get('/movie/:id', withAuth, async (req, res) =>{
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const reviewerData = await Reviewer.findByPk(req.session.reviewer_id);
+     const reviewerData = await Reviewer.findByPk(req.session.reviewer_id, {
+      include: [{model: Review}],
+    });
     const reviewer = reviewerData.get({ plain: true });
+
+    const reviews = reviewer.reviews
       res.render('dashboard', {
-        reviewer,
+        reviews, 
         logged_in: req.session.logged_in,
       });
+    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -123,6 +128,13 @@ router.get('/movie-import/:id', withAuth, async (req, res) =>{
     console.log(err);
     res.status(500).json(err);  
 }
+})
+
+router.get('/add-movie', withAuth, async(req,res) => {
+  try{res.render("create-review");}
+  catch(err){
+    console.log(err);
+  }
 })
 
 router.get('/login', (req, res) => {
