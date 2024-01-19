@@ -1,12 +1,14 @@
 const reviewCreate = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('#title-create').value.trim();
+    const title = document.querySelector('#title-create').innerText;
     const movie_id = document.querySelector('#title-create').getAttribute("movie_id");
     const poster_path = document.querySelector('#overview').getAttribute("poster_path");
-    const overview = document.querySelector('#overview').innerText.trim();
-    const releaseDate = document.querySelector('#release-date').innerText.trim()
+    const overview = document.querySelector('#overview').innerText;
+    const releaseDate = document.querySelector('#release-date').innerText;
     const body = document.querySelector('#review-create').value.trim();
+
+    console.log(title, movie_id, poster_path, overview, releaseDate, body)
 
     if(title && body && overview && releaseDate) {
         const movieResponse = await fetch('/api/tmdb/create-movie', {
@@ -15,7 +17,7 @@ const reviewCreate = async (event) => {
             headers: { 'Content-Type': 'application/json' }
         });
         if(movieResponse.ok) {
-            console.log('Review successfully posted!');
+            console.log('Movie successfully posted!');
         } else {
             alert(movieResponse.statusText);
         }

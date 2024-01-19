@@ -110,14 +110,12 @@ router.get('/search-results-list', async (req, res) => {
 router.get('/movie-import/:id', withAuth, async (req, res) =>{
   try{
     var TMDBUrl = 'https://api.themoviedb.org/3/movie/'+ req.params.id
-    console.log(TMDBUrl)
     const remoteResponse = await fetch(TMDBUrl, {
       method:'GET',
       headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.BEARER_TOKEN}`},
       }).then((response) => response.json())
     
     const movie = remoteResponse
-console.log(movie);
     res.render('create-review',{
       movie,
     });

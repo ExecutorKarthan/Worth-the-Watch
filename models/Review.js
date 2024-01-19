@@ -20,7 +20,7 @@ Review.init(
       allowNull: false,
     },
     body: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10000),
       allowNull: false,
     },
     reviewer_id: {
