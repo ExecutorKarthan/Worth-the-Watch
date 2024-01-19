@@ -96,8 +96,6 @@ router.get('/search-results-list', async (req, res) => {
   try {
     const query_results = req.session.query_results
 
-    console.log(query_results)
-
     res.render('search-results', {
       results: query_results.results,
       logged_in: req.session.logged_in,
@@ -119,7 +117,7 @@ router.get('/movie-import/:id', withAuth, async (req, res) =>{
       }).then((response) => response.json())
     
     const movie = remoteResponse
-
+console.log(movie);
     res.render('create-review',{
       movie,
     });
