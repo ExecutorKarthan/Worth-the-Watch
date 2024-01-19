@@ -3,12 +3,16 @@ const reviewCreate = async (event) => {
 
     const title = document.querySelector('#title-create').innerText;
     const movie_id = document.querySelector('#title-create').getAttribute("movie_id");
-    const poster_path = document.querySelector('#overview').getAttribute("poster_path");
+    var poster_path = document.querySelector('#overview').getAttribute("poster_path");
     const overview = document.querySelector('#overview').innerText;
     const releaseDate = document.querySelector('#release-date').innerText;
     const body = document.querySelector('#review-create').value.trim();
 
-    console.log(title, movie_id, poster_path, overview, releaseDate, body)
+    if(poster_path != null){
+        poster_path = "https://image.tmdb.org/t/p/original"+ poster_path;
+    }else{
+        poster_path = "/No-Image-Placeholder.svg";
+    }
 
     if(title && body && overview && releaseDate) {
         const movieResponse = await fetch('/api/tmdb/create-movie', {
@@ -22,10 +26,11 @@ const reviewCreate = async (event) => {
             alert(movieResponse.statusText);
         }
     }
+
     if(title && body && overview && releaseDate) {
         const reviewResponse = await fetch('/api/review/create-review', {
             method: 'POST',
-            body: JSON.stringify({ title, body, overview}),
+            body: JSON.stringify({ title, body, movie_id}),
             headers: { 'Content-Type': 'application/json' }
         });
         if(reviewResponse.ok) {

@@ -9,11 +9,6 @@ Movie.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-    },
-    foreign_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     title: {
       type: DataTypes.STRING(1000),

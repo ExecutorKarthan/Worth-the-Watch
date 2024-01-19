@@ -27,10 +27,6 @@ Reviewer.init(
         len: [3],
       },
     },
-    review_count:{
-      type: DataTypes.INTEGER,
-      default: 0,
-    }
   },
   {
     hooks: {
