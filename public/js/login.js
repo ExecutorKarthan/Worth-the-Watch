@@ -18,7 +18,7 @@ const reviewerLogin = async (event) => {
 
             setTimeout(function () {
                 document.location.replace('/dashboard');
-            }, 2000);
+            }, 1000);
         } else {
             const responseData = await response.json();
 
