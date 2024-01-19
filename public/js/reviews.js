@@ -1,13 +1,12 @@
 const reviewCreate = async (event) => {
     event.preventDefault();
+
     const title = document.querySelector('#title-create').value.trim();
     const movie_id = document.querySelector('#title-create').getAttribute("movie_id");
     const poster_path = document.querySelector('#overview').getAttribute("poster_path");
+    const overview = document.querySelector('#overview').innerText.trim();
+    const releaseDate = document.querySelector('#release-date').innerText.trim()
     const body = document.querySelector('#review-create').value.trim();
-    const overview = document.querySelector('#overview').value.trim();
-    const releaseDate = document.querySelector('#release-date').value.trim();
-
-    console.log(title, body, overview, releaseDate, movie_id, poster_path);
 
     if(title && body && overview && releaseDate) {
         const movieResponse = await fetch('/api/tmdb/create-movie', {

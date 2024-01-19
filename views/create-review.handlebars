@@ -1,6 +1,7 @@
-<section class="flex-row justify-center">
+{{!-- <section class="container col-8">
     <h2>Create a Review</h2>
     <form class="form review-form">
+
         <div class="form-group">
             <label for="title-create">Movie Title</label>
             <input class="form-input" type="text" id="title-create" value="{{movie.title}}" movie_id="{{movie.id}}"/>
@@ -13,12 +14,43 @@
             <label for="overview">Overview</label>
             <input class="form-input" type="text" id="overview" value="{{movie.overview}}" poster_path="{{movie.poster_path}}"/>
         </div>
-        <div class="form-group">
-            <label for="release-date">Release Date</label>
+        <div class="form-group m-3">
+            <label for="release-date" style="font-weight: bold;">Release Date</label>
             <input class="form-input" type="text" id="release-date" value="{{movie.release_date}}"/>
         </div>
-        <div class="form-group">
+        <div class="form-group m-3">
+            <label for="review-create" style="font-weight: bold;">Your review</label>
+            <input class="form-input" type="text" id="review-create"/>
+        </div>
+        <div class="form-group m-2">
             <btn class="btn btn-primary" type="submit" id="post-btn">Submit</btn>
+        </div>
+    </form>
+</section>
+
+<script src="/js/reviews.js"></script> --}}
+
+<section class="container col-8 mt-4">
+    <h2>Create a Review</h2>
+    <form class="form review-form">
+        <div class="form-group m-3">
+            <label for="title-create" style="font-weight: bold;">Movie Title</label>
+            <p class="form-control-plaintext large-text black-text" id="title-create">{{movie.title}}</p>
+        </div>
+        <div class="form-group m-3">
+            <label for="overview" style="font-weight: bold;">Overview</label>
+            <p class="form-control-plaintext large-text black-text" id="overview">{{movie.overview}}</p>
+        </div>
+        <div class="form-group m-3">
+            <label for="release-date" style="font-weight: bold;">Release Date</label>
+            <p class="form-control-plaintext large-text black-text" id="release-date">{{movie.release_date}}</p>
+        </div>
+        <div class="form-group m-3">
+            <label for="review-create" style="font-weight: bold;">Your review</label>
+            <textarea class="form-control half-width" id="review-create" rows="4" placeholder="Write your review here..."></textarea>
+        </div>
+        <div class="form-group m-2">
+            <button class="btn btn-dark" type="submit" id="post-btn">Submit</button>
         </div>
     </form>
 </section>
