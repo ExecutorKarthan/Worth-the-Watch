@@ -1,13 +1,21 @@
 <section class="container">
   <div class = "row">
     <div class="col-md">
-      <button type="button" class="btn btn-dark" id="review-btn" movie_id="{{id}}">Review this film</button>
+      <a href="/check-reviews/{{id}}">Check Reviews</a>
     </div>
+    {{#if poster_path}}
     <div class="col-md">
       <img src='{{poster_path}}'>
     </div>
+    {{else}}
+    <div class="col-md">
+      <img src="/No-Image-Placeholder.svg">
+    </div>
+    {{/if}}
     <div class="col-md">
         <p>{{title}}</p>
         <p>{{overview}}</p>
         <p>{{release_date}}</p>
     </div>
+  </div>
+</section>
