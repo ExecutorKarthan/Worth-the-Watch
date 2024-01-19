@@ -28,6 +28,7 @@ const search = async (event) => {
             localMovieData = await fetch(`/tmdb/movie/local-query/${query}`, {
                  method: 'GET',
              }).then((response) => response.json())
+             console.log("This is local movie data ", localMovieData)
          }
          catch (err) {
              console.log(err)

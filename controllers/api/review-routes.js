@@ -9,6 +9,7 @@ router.post('/create-review', withAuth, async (req, res) => {
         title: req.body.title,
         posted_date: createdDate,
         body: req.body.body,
+        movie_id: req.body.movie_id,
         reviewer_id: req.session.reviewer_id,
     });
     res.status(200).json(newReview);
