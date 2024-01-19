@@ -1,11 +1,11 @@
 <section class="container">
   <div class = "row">
     <div class="col-md">
-      <a href="/movie-import/{{id}}">Review this film</a>
+      <a href="/check-reviews/{{id}}">Review this film</a>
     </div>
     {{#if poster_path}}
     <div class="col-md">
-      <img src='https://image.tmdb.org/t/p/original{{poster_path}}'>
+      <img src='{{poster_path}}'>
     </div>
     {{else}}
     <div class="col-md">

@@ -1,0 +1,25 @@
+<section class="container">
+  <div class = "row">
+    <div class="col-md">
+        <h3>{{reviews.0.movie.title}}</h3>
+    </div>
+    {{#each reviews as |review|}}
+      <div class = "review-container rounded-4 gy-5">
+        <div class="review-header row border border-dark">
+          <div class="col-md">
+            <h5>Review</h5>
+          </div>
+          <div class="col-md text-end">
+            <p>Reviewed by {{review.reviewer.username}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <p>{{body}}</p>
+        </div>
+      </div>
+    {{/each}}
+    <div class="row gy-5">
+      <button type="button" class="btn btn-dark" id="review-btn" movie_id="{{reviews.0.movie.id}}">Review this film</button>
+    </div>
+  </div>
+</section>

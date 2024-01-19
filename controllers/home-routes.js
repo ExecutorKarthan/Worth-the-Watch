@@ -3,20 +3,27 @@ const { Movie, Reviewer, Review } = require('../models');
 const withAuth = require('../util/auth');
 
 router.get('/', async (req, res) => {
+  // try{
+  //   const reviewData = await Review.findAll({
+  //     include: [
+  //       {
+  //         model: Reviewer,
+  //         attributes: ['username'],
+  //       }
+  //     ]
+  //   });
+  //   const reviews = reviewData.map((post) =>
+  //     post.get({ plain: true })
+  //   );
   try{
-    const reviewData = await Review.findAll({
-      include: [
-        {
-          model: Reviewer,
-          attributes: ['username'],
-        }
-      ]
+    const movieData = await Movie.findAll({
+      
     });
-    const reviews = reviewData.map((post) =>
+    const movies = movieData.map((post) =>
       post.get({ plain: true })
     );
     res.render('home', {
-        reviews,
+        movies,
         logged_in: req.session.logged_in,
       });
   } catch(err) {
@@ -106,6 +113,32 @@ router.get('/search-results-list', async (req, res) => {
   }
 });
 
+router.get('/check-reviews/:id', withAuth, async (req, res) =>{
+  try{
+    const reviewData = await Review.findAll({
+      where: {
+        movie_id: req.params.id}
+      ,
+      include: [
+        {
+          model: Movie,
+          model: Reviewer,
+        }
+      ]
+    });
+    const reviews = reviewData.map((post) =>
+      post.get({ plain: true })
+    );
+    res.render('movie\'s-reviews',{
+      reviews,
+    });
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);  
+}
+})
+
 router.get('/movie-import/:id', withAuth, async (req, res) =>{
   try{
     var TMDBUrl = 'https://api.themoviedb.org/3/movie/'+ req.params.id
@@ -113,7 +146,7 @@ router.get('/movie-import/:id', withAuth, async (req, res) =>{
       method:'GET',
       headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.BEARER_TOKEN}`},
       }).then((response) => response.json())
-    
+
     const movie = remoteResponse
     res.render('create-review',{
       movie,

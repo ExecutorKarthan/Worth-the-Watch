@@ -11,7 +11,7 @@ footer{
   text-align: center;
 }
 
-#nav-link{
+#nav-link, .home-headlines{
     color: white !important;
 }
 
@@ -52,4 +52,18 @@ img{
 
 .my-dashboard-reviews, .dashboard-new-review {
     background-color: transparent;
+}
+
+.home-headline{
+    text-decoration: none;
+}
+
+.review-container{
+    background-color: white;
+}
+
+.review-header{
+    border-width: 3px !important;
+    background-color: black;
+    color: white !important;
 }
