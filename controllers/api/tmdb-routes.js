@@ -57,8 +57,8 @@ router.post('/create-movie', withAuth, async (req, res) => {
     }else{
       postPath = "/No-Image-Placeholder.svg";
     }
-console.log(postPath)
-  const newMovie = await Movie.create({
+    console.log(postPath)
+    const newMovie = await Movie.create({
       title: req.body.title, 
       overview: req.body.overview, 
       release_date: req.body.releaseDate,

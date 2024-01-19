@@ -28,7 +28,6 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     try{
         const reviewerData = await Reviewer.findOne({ where: { username: req.body.username }});
-        console.log(reviewerData)
         if(!reviewerData) {
             res
                 .status(400)

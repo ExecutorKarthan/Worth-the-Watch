@@ -16,11 +16,11 @@ Movie.init(
       allowNull: false,
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     overview: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10000),
       allowNull: true,
     },
     release_date: {
@@ -28,7 +28,7 @@ Movie.init(
       allowNull: true,
     },
     poster_path: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(300),
       allowNull: false,
     },
   },
