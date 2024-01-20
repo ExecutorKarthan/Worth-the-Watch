@@ -1,7 +1,7 @@
 <section class="container">
   <div class = "row">
     <div class="col-md">
-      <h3 id="movie_id" movie_id="{{reviews.movie.id}}">{{reviews.0.title}}</h3>
+      <h3 id="movie_id" movie_id="{{movie_id.id}}">{{reviews.0.title}}</h3>
     </div>
     {{#each reviews as |review|}}
       <div class = "review-container rounded-4 gy-5">
@@ -19,7 +19,7 @@
       </div>
     {{/each}}
     <div class="row gy-5">
-      <a href="/add-review/{{reviews.0.movie_id}}">Review this film</a>
+      <a href="/add-review/{{movie_id.id}}">Review this film</a>
     </div>
   </div>
 </section>

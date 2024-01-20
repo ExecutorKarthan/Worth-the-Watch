@@ -199,6 +199,7 @@ if(document.querySelector('#post-scratch-btn')){
 
 if(document.querySelector('#review-btn')){
     document.querySelector('#review-btn').addEventListener('click', addAnotherReview);
+}
 
 if(document.querySelector('#edit-review-btn')){
     document.querySelector('#edit-review-btn').addEventListener('click', reviewUpdate);
@@ -209,5 +210,4 @@ if(document.querySelector('#delete-btn')){
     delBtns.forEach((button) => {
         button.addEventListener('click', reviewDelete);
     });
-
 }
