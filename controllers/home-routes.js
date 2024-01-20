@@ -3,18 +3,6 @@ const { Movie, Reviewer, Review } = require('../models');
 const withAuth = require('../util/auth');
 
 router.get('/', async (req, res) => {
-  // try{
-  //   const reviewData = await Review.findAll({
-  //     include: [
-  //       {
-  //         model: Reviewer,
-  //         attributes: ['username'],
-  //       }
-  //     ]
-  //   });
-  //   const reviews = reviewData.map((post) =>
-  //     post.get({ plain: true })
-  //   );
   try{
     const movieData = await Movie.findAll({
       
@@ -115,6 +103,7 @@ router.get('/search-results-list', async (req, res) => {
 
 router.get('/check-reviews/:id', withAuth, async (req, res) =>{
   try{
+    const movie_id = {id: req.params.id}
     const reviewData = await Review.findAll({
       where: {
         movie_id: req.params.id}
@@ -130,8 +119,10 @@ router.get('/check-reviews/:id', withAuth, async (req, res) =>{
       post.get({ plain: true })
     );
     console.log(reviews);
+    console.log(movie_id)
     res.render('movie\'s-reviews',{
       reviews,
+      movie_id,
     });
   }
   catch (err) {

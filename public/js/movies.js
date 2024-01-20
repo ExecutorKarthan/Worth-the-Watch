@@ -44,7 +44,10 @@ const search = async (event) => {
                 if(remoteMovieData.results.length > 0){
                     document.location.replace(`/search-results-list`)
                 }
-                //Add a message that no movie was found
+                else{
+                    //Added feature - side log in?
+                    alert("Movie not found. Be sure to check the spelling of the film to ensure it is correct.")
+                }
             }
             catch (err){
                 console.log(err)
