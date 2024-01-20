@@ -129,6 +129,7 @@ router.get('/check-reviews/:id', withAuth, async (req, res) =>{
     const reviews = reviewData.map((post) =>
       post.get({ plain: true })
     );
+    console.log(reviews);
     res.render('movie\'s-reviews',{
       reviews,
     });
@@ -196,6 +197,20 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
   }
 });
+
+router.get('/add-review/:id', withAuth, async (req, res) => {
+  try {
+    const movieData = await Movie.findByPk(req.params.id);
+    const movie = movieData.get({ plain: true });
+
+    res.render('create-query-review', {
+      movie,
+    });
+  } catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 router.get('/review/:id', withAuth, async (req, res) => {
   try{
