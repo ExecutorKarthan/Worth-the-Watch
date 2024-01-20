@@ -109,6 +109,8 @@ const reviewScratchCreate = async (event) => {
                 method: 'GET',
             }).then((response) => response.json())
             const movie_id = localMovieData[0].id
+            console.log(localMovieData)
+            console.log(localMovieData[0])
 
             const reviewResponse = await fetch('/api/review/create-review', {
                 method: 'POST',
@@ -125,6 +127,43 @@ const reviewScratchCreate = async (event) => {
     }
 };
 
+const reviewUpdate = async (event) => {
+    event.preventDefault();
+    console.log()
+    const review_id = document.querySelector('#id_label').getAttribute('review_id');
+    const title = document.querySelector('#title-create').innerText;
+    const body = document.querySelector('#review-create').value.trim();
+    const releaseDate = document.querySelector('#release-date').innerText;
+    if(title && body && releaseDate) {
+        const response = await fetch(`/api/review/${review_id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ review_id, title, body, releaseDate }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if(response.ok) {
+            document.location.replace('/dashboard');
+            alert('Review successfully updated!');
+        } else {
+            alert(response.statusText);
+        }
+    }
+
+};
+
+const reviewDelete = async (event) => {
+    event.preventDefault();
+    const id = document.querySelector('#delete-btn').getAttribute('delete_id');
+    const response = await fetch(`/api/review/${id}`, {
+        method: 'DELETE'
+    });
+    if(response.ok) {
+        document.location.replace('/dashboard');
+        alert('Review successfully deleted!');
+    } else {
+        alert(response.statusText);
+    }
+};
+
 if(document.querySelector('#post-query-btn')){
     document.querySelector('#post-query-btn').addEventListener('click', reviewQueryCreate);
 }
@@ -133,3 +172,14 @@ if(document.querySelector('#post-scratch-btn')){
     document.querySelector('#post-scratch-btn').addEventListener('click', reviewScratchCreate);
 }
 
+if(document.querySelector('#edit-review-btn')){
+    document.querySelector('#edit-review-btn').addEventListener('click', reviewUpdate);
+}
+
+if(document.querySelector('#delete-btn')){
+    const delBtns = document.querySelectorAll('#delete-btn')
+    delBtns.forEach((button) => {
+        button.addEventListener('click', reviewDelete);
+    });
+
+}
