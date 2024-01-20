@@ -2,7 +2,7 @@
     <h2>{{name}}</h2>
     <h1 class="text-center m-4">My Dashboard</h1>
     <div class="text-center">
-        <a href="/reviews" class="btn btn-dark dashboard-new-review">Create a new review</a>
+        <a href="/add-movie" class="btn btn-dark dashboard-new-review">Create a new review</a>
     </div>
     
     {{#each reviews as |review|}}
@@ -14,10 +14,12 @@
                     <p class="card-text">{{review.body}}</p>
                 </div>
                 <div class="d-flex">
-                    <a href="/reviews/{{review.id}}" class="btn btn-warning btn-sm m-2">Edit</a>
-                    <a href="/reviews/{{review.id}}" class="btn btn-danger btn-sm ms-auto m-2">Delete</a>
+                    <a href="/review/{{review.id}}" class="btn btn-warning btn-sm m-2">Edit</a>
+                    <btn id="delete-btn" delete_id="{{review.id}}" class="btn btn-danger btn-sm ms-auto m-2">Delete</btn>
                 </div>
             </div>
         </div>
     {{/each}}
 </section>
+
+<script src="/js/reviews.js"></script>
