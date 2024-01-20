@@ -125,6 +125,30 @@ const reviewScratchCreate = async (event) => {
     }
 };
 
+const addAnotherReview = async (event) => {
+    event.preventDefault();
+    
+    const movie_id = document.querySelector('#movie_id').getAttribute("movie_id");
+    const body = document.querySelector('#review-create').value.trim();
+    const title = document.querySelector('#movie_id').innerText;
+
+        if(title && body) {
+            const reviewResponse = await fetch('/api/review/create-review', {
+                method: 'POST',
+                body: JSON.stringify({ title, body, movie_id}),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if(reviewResponse.ok) {
+                document.location.replace('/dashboard');
+                alert('Review successfully posted!');
+            } else {
+                alert(reviewResponse.statusText);
+            }
+        }
+};
+
+
+
 if(document.querySelector('#post-query-btn')){
     document.querySelector('#post-query-btn').addEventListener('click', reviewQueryCreate);
 }
@@ -133,3 +157,6 @@ if(document.querySelector('#post-scratch-btn')){
     document.querySelector('#post-scratch-btn').addEventListener('click', reviewScratchCreate);
 }
 
+if(document.querySelector('#review-btn')){
+    document.querySelector('#review-btn').addEventListener('click', addAnotherReview);
+}
