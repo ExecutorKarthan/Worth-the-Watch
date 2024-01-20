@@ -3,15 +3,15 @@
     <form class="form review-form" form_id="scratch-form">
         <div class="form-group m-3">
             <label for="title-create" style="font-weight: bold;">Movie Title</label>
-            <input class="form-control-plaintext large-text black-text text-wrap" id="title-create" movie_id="{{movie.id}}"/>
+            <textarea class="form-control half-width text-wrap" id="title-create" movie_id="{{movie.id}}" rows="1"></textarea>
         </div>
         <div class="form-group m-3">
             <label for="overview" style="font-weight: bold;">Overview</label>
-            <input class="form-control-plaintext large-text black-text text-wrap" id="overview" poster_path="{{movie.poster_path}}"/>
+            <textarea class="form-control half-width text-wrap" id="overview" poster_path="{{movie.poster_path}}" rows="1"></textarea>
         </div>
         <div class="form-group m-3">
             <label for="release-date" style="font-weight: bold;">Release Date</label>
-            <input class="form-control-plaintext large-text black-text text-wrap" id="release-date"/>
+            <textarea class="form-control half-width text-wrap" id="release-date" rows="1"></textarea>
         </div>
         <div class="form-group m-3">
             <label for="review-create" style="font-weight: bold;">Your review</label>
