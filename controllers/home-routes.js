@@ -197,5 +197,26 @@ router.get('/logout', (req, res) => {
   }
 });
 
+router.get('/review/:id', withAuth, async (req, res) => {
+  try{
+    console.log(req.params);
+const reviewData = await Review.findByPk( req.params.id,{
+  include: [
+    {
+      model: Movie,
+    }
+  ]
+});
+const review = reviewData.get({plain: true});
+console.log(review);
+res.render('update-review',{review, 
+  logged_in: req.session.logged_in,
+})
+  }catch(err){
+    console.log(err);
+    res.status(500).json(err);
+}
+});
+
 //Export the newly adjusted router
 module.exports = router;

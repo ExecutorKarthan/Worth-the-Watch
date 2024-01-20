@@ -37,12 +37,14 @@ router.delete('/:id', withAuth, async (req, res) => {
 });
 
 router.put('/:id', withAuth, async (req, res) => {
+    console.log(req.body);
     try{
         const updateReview = await Review.update({
+            body: req.body.body,
+        },{
             where: {
                 id: req.params.id,
-                reviewer_id: req.session.reviewer_id,
-            },
+            }
         });
         if(!updateReview) {
             res.status(404).json({ message: 'Error: review not found.' });
