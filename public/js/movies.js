@@ -45,9 +45,15 @@ const search = async (event) => {
                     document.location.replace(`/search-results-list`)
                 }
                 else{
-                    //Added feature - side log in?
-                    alert("Movie not found. Be sure to check the spelling of the film to ensure it is correct.")
-                }
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Movie could not be found. Be sure to check the spelling of the film to ensure it is correct.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
+                }   
             }
             catch (err){
                 console.log(err)

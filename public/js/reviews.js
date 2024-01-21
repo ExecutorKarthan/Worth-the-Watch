@@ -49,10 +49,24 @@ const reviewQueryCreate = async (event) => {
                 headers: { 'Content-Type': 'application/json' }
             });
             if(reviewResponse.ok) {
+                const successMessage = document.createElement('div');
+                successMessage.className = 'alert alert-success mt-2';
+                successMessage.innerHTML = 'Review successfully posted!';
+                document.querySelector('.search-section').appendChild(successMessage);
+    
+            setTimeout(function () {
+                successMessage.remove();
                 document.location.replace('/dashboard');
-                alert('Review successfully posted!');
+            }, 1000);
             } else {
-                alert(reviewResponse.statusText);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Error posting review.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
             }
         }
     }
@@ -118,10 +132,24 @@ const reviewScratchCreate = async (event) => {
                 headers: { 'Content-Type': 'application/json' }
             });
             if(reviewResponse.ok) {
+                const successMessage = document.createElement('div');
+                successMessage.className = 'alert alert-success mt-2';
+                successMessage.innerHTML = 'Review successfully posted!';
+                document.querySelector('.search-section').appendChild(successMessage);
+    
+            setTimeout(function () {
+                successMessage.remove();
                 document.location.replace('/dashboard');
-                alert('Review successfully posted!');
+            }, 1000);
             } else {
-                alert(reviewResponse.statusText);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Error posting review.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
             }
         }
     }
@@ -141,15 +169,27 @@ const addAnotherReview = async (event) => {
                 headers: { 'Content-Type': 'application/json' }
             });
             if(reviewResponse.ok) {
+                const successMessage = document.createElement('div');
+                successMessage.className = 'alert alert-success mt-2';
+                successMessage.innerHTML = 'Review successfully posted!';
+                document.querySelector('.search-section').appendChild(successMessage);
+    
+            setTimeout(function () {
+                successMessage.remove();
                 document.location.replace('/dashboard');
-                alert('Review successfully posted!');
+            }, 1000);
             } else {
-                alert(reviewResponse.statusText);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Error posting review.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
             }
         }
 };
-
-
 
 const reviewUpdate = async (event) => {
     event.preventDefault();
@@ -165,10 +205,24 @@ const reviewUpdate = async (event) => {
             headers: { 'Content-Type': 'application/json' }
         });
         if(response.ok) {
+            const successMessage = document.createElement('div');
+            successMessage.className = 'alert alert-success mt-2';
+            successMessage.innerHTML = 'Review successfully updated!';
+            document.querySelector('.search-section').appendChild(successMessage);
+
+        setTimeout(function () {
+            successMessage.remove();
             document.location.replace('/dashboard');
-            alert('Review successfully updated!');
+        }, 1000);
         } else {
-            alert(response.statusText);
+            const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Error updating review.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
         }
     }
 
@@ -181,12 +235,27 @@ const reviewDelete = async (event) => {
         method: 'DELETE'
     });
     if(response.ok) {
-        document.location.replace('/dashboard');
-        alert('Review successfully deleted!');
+        const successMessage = document.createElement('div');
+        successMessage.className = 'alert alert-success mt-2';
+        successMessage.innerHTML = 'Review successfully deleted!';
+        document.querySelector('.search-section').appendChild(successMessage);
+
+        setTimeout(function () {
+            successMessage.remove();
+            document.location.replace('/dashboard');
+        }, 1000);
     } else {
-        alert(response.statusText);
+        const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-2';
+                errorMessage.innerHTML = 'Error deleting review.';
+                document.querySelector('.search-section').appendChild(errorMessage);
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 2000);
     }
 };
+
 
 
 if(document.querySelector('#post-query-btn')){

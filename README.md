@@ -16,7 +16,7 @@ This project requires the following packages to function:
 8) "mysql2" which can be found at [https://www.npmjs.com/package/mysql2](https://www.npmjs.com/package/mysql2)
 9) "sequelize" which can be found at [https://sequelize.org/docs/v6/](https://sequelize.org/docs/v6/)
 
-The user must also have a .env file with their SQL credentials stored for the program to interact with the SQL database locally. Otherwise, this program runs via Heroku and requires no installations
+The user must also have a .env file with their SQL credentials stored for the program to interact with the SQL database locally. Otherwise, this program runs via Heroku and requires no installations.
 
 ## Usage
 Once installed, the user needs to start their npm server with the command '''npm start''. Then the user can navigate to "hostlocal:3001" to see the app. Alternatively, a user can navigate to [https://worth-the-watch-4fed4e43ed4e.herokuapp.com/](https://worth-the-watch-4fed4e43ed4e.herokuapp.com/). From there, the user can have the web experience of the app. 

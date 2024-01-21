@@ -27,7 +27,7 @@ const reviewerLogin = async (event) => {
                 const errorMessage = document.createElement('div');
                 errorMessage.className = 'alert alert-danger mt-2';
                 errorMessage.innerHTML = 'Incorrect email or password';
-                document.querySelector('.signup-form').appendChild(errorMessage);
+                document.querySelector('.login-form').appendChild(errorMessage);
 
 
                 setTimeout(() => {
