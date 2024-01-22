@@ -1,8 +1,11 @@
+//Import needed modules for operation
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+//Create a movie model to store movie data
 class Movie extends Model {}
 
+//Define the attributes for movies in the database
 Movie.init(
   {
     id: {
@@ -36,4 +39,5 @@ Movie.init(
   }
 );
 
+//Export the model for use
 module.exports = Movie;
