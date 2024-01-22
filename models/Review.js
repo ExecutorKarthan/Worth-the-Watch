@@ -1,8 +1,11 @@
+//Import needed modules for operation
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+//Create a review model to store review data
 class Review extends Model {}
 
+//Define the attributes for reviews in the database
 Review.init(
   {
     id: {
@@ -46,4 +49,5 @@ Review.init(
   }
 );
 
+//Export the model for use
 module.exports = Review;
