@@ -23,6 +23,29 @@ router.get('/', async (req, res) => {
   }
 });
 
+//Create a route to load the dashboard
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    //Pull all the reviews for a reviewer by searching the reviewer's ID
+    const reviewerData = await Reviewer.findByPk(req.session.reviewer_id, {
+      include: [{model: Review}],
+    });
+    //Get the plain data for the reviews
+    const reviewer = reviewerData.get({ plain: true });
+    //Get the reviews from the reviewer's data
+    const reviews = reviewer.reviews
+    //Render the dashboard and adjust the page depending on if the user is logged in or not
+    res.render('dashboard', {
+      reviews, 
+      logged_in: req.session.logged_in,
+    });
+  } 
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //Create a route to list all the reviewers - for future development
 router.get('/reviewers', withAuth, async (req, res) =>{
   try {
@@ -65,6 +88,48 @@ router.get('/reviewers/:id', withAuth, async (req, res) =>{
   }
 });
 
+//Create a route that adds a review to a movie
+router.get('/add-review/:id', withAuth, async (req, res) => {
+  try {
+    //Find the movie by its ID
+    const movieData = await Movie.findByPk(req.params.id);
+    //Get the movie's data in plain
+    const movie = movieData.get({ plain: true });
+    //Render the page to create a review based on the API query
+    res.render('create-query-review', {
+      movie,
+      logged_in: req.session.logged_in,
+    });
+  } 
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
+//Create a route to update a review
+router.get('/review/:id', withAuth, async (req, res) => {
+  try{
+    //Get a review by its ID
+    const reviewData = await Review.findByPk( req.params.id,{
+      include: [
+        {
+          model: Movie,
+        }
+      ]
+    });
+    //Get the data in plain
+    const review = reviewData.get({plain: true});
+    //Render the update-review page with the review and the user's log in
+    res.render('update-review',{review, 
+      logged_in: req.session.logged_in,
+    })
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+});
+
 //Create a route to display a particular movie's data in the database
 router.get('/movie/:id', withAuth, async (req, res) =>{
   try {
@@ -78,47 +143,6 @@ router.get('/movie/:id', withAuth, async (req, res) =>{
       logged_in: req.session.logged_in,
     });
     } 
-  catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-//Create a route to load the dashboard
-router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    //Pull all the reviews for a reviewer by searching the reviewer's ID
-    const reviewerData = await Reviewer.findByPk(req.session.reviewer_id, {
-      include: [{model: Review}],
-    });
-    //Get the plain data for the reviews
-    const reviewer = reviewerData.get({ plain: true });
-    //Get the reviews from the reviewer's data
-    const reviews = reviewer.reviews
-    //Render the dashboard and adjust the page depending on if the user is logged in or not
-    res.render('dashboard', {
-      reviews, 
-      logged_in: req.session.logged_in,
-    });
-  } 
-  catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-//Create a route to render a list of search results that were queried 
-router.get('/search-results-list', async (req, res) => {
-  try {
-    //Store the search results in a variable
-    const query_results = req.session.query_results
-    //Render the search results and adjust the page depending on if the user is logged in or not
-    res.render('search-results', {
-      results: query_results.results,
-      logged_in: req.session.logged_in,
-    });
-
-  } 
   catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -158,6 +182,24 @@ router.get('/check-reviews/:id', withAuth, async (req, res) =>{
     res.status(500).json(err);  
   }
 })
+
+//Create a route to render a list of search results that were queried 
+router.get('/search-results-list', async (req, res) => {
+  try {
+    //Store the search results in a variable
+    const query_results = req.session.query_results
+    //Render the search results and adjust the page depending on if the user is logged in or not
+    res.render('search-results', {
+      results: query_results.results,
+      logged_in: req.session.logged_in,
+    });
+
+  } 
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 //Create a route to import movie data from the API
 router.get('/movie-import/:id', withAuth, async (req, res) =>{
@@ -205,12 +247,14 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-//
+//Create a route to redirect to the sign up page
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+//Create a route to log out a user, destroying their session
 router.get('/logout', (req, res) => {
+  //If the user is logged in, destroy the session and take them to the home page
   if (req.session.logged_in) {
     req.session.destroy((err) => {
       if (err) {
@@ -220,45 +264,10 @@ router.get('/logout', (req, res) => {
         res.render('logout');
       }
     })
-  } else {
+  } 
+  else {
     res.redirect('/');
   }
-});
-
-router.get('/add-review/:id', withAuth, async (req, res) => {
-  try {
-    const movieData = await Movie.findByPk(req.params.id);
-    const movie = movieData.get({ plain: true });
-
-    res.render('create-query-review', {
-      movie,
-      logged_in: req.session.logged_in,
-    });
-  } catch(err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-})
-
-router.get('/review/:id', withAuth, async (req, res) => {
-  try{
-    console.log(req.params);
-const reviewData = await Review.findByPk( req.params.id,{
-  include: [
-    {
-      model: Movie,
-    }
-  ]
-});
-const review = reviewData.get({plain: true});
-console.log(review);
-res.render('update-review',{review, 
-  logged_in: req.session.logged_in,
-})
-  }catch(err){
-    console.log(err);
-    res.status(500).json(err);
-}
 });
 
 //Export the newly adjusted router
