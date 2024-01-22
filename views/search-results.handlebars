@@ -1,8 +1,7 @@
-{{!-- //{{#if logged_in}} --}}
+<!--Creates a list of results from the database of movies based on what the user typed into the search.-->
     <section class="flex-row justify-center">
         {{#each results as |result|}}
             {{> query-list-movies}}
         {{/each}}
         <a href="/add-movie">Don't see your movie?</a>
     </section>
-{{!-- {{/if}} --}}

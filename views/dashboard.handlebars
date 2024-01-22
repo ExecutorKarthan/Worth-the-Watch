@@ -2,9 +2,11 @@
     <h2>{{name}}</h2>
     <h1 class="text-center m-4" id="dashboard-header">My Dashboard</h1>
     <div class="text-center">
+        <!--On click, this directs the user to create a new review from scratch.-->
         <a href="/add-movie" class="btn btn-dark dashboard-new-review">Create a new review</a>
     </div>
     
+    <!--This section displays all reviews made by the user who is logged in. Each review has a button to edit and delete.-->
     {{#each reviews as |review|}}
         <div class="container mt-3">
             <div class="card border border-5 my-dashboard-reviews">

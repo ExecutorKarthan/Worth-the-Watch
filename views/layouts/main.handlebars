@@ -6,10 +6,9 @@
     <title>Worth the Watch?</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-
 </head>
 <body>
-
+  <!--This section is for the navigation bar at the top of the application. It utilizes bootstrap for most of its styling.-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" id="nav-link" href="/">Worth the Watch?</a>
@@ -19,6 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
          <a class="nav-item nav-link" id="nav-link" href="/dashboard">Dashboard</a>
+         <!--This section is stating that if the user is logged in then the navbar displays a logout option and if the user is logged out then it displays a login option.-->
             {{#if logged_in}}
             <a class="nav-item nav-link" id="nav-link" href="/logout">Logout</a>
             {{else}}
@@ -28,12 +28,12 @@
     </div>
   </div>
 </nav>
-
+<!--This section is for the welcoming message displayed to the user. It also includes the search bar and directs the user on what to type in.-->
     <div class="jumbotron">
         <h1 class="display-4">Hello!</h1>
         <p class="lead">This webpage is dedicated to showcasing movie reviews, to help users decide if a specific movie is "Worth the Watch".</p>
         <hr class="my-4">
-        <p> Please enter a movie title or username below.</p>
+        <p> Please enter a movie title below.</p>
 
         <div class="search-section">
             <input class="search-bar" type="text" id="search-bar" placeholder="Search">
@@ -42,6 +42,7 @@
     </div>
 
     <main>
+      <!--This section displays the movies that have been reviewed.-->
         <div class="container">
             {{{body}}}
         </div>
