@@ -1,3 +1,4 @@
+<!--This section is for displaying all the reviews for a specific movie.-->
 <section class="container">
   <div class = "row">
     <div class="col-md">
@@ -10,15 +11,18 @@
             <h5>Review</h5>
           </div>
           <div class="col-md text-end">
+            <!--This shows the username of the person that left this review.-->
             <p>Reviewed by {{review.reviewer.username}}</p>
           </div>
         </div>
         <div class="row">
+          <!--This shows the content of the review.-->
           <p>{{body}}</p>
         </div>
       </div>
     {{/each}}
     <div class="row gy-5">
+      <!--This redirects to the review form for the specific movie.-->
       <a href="/add-review/{{movie_id.id}}">Review this film</a>
     </div>
   </div>

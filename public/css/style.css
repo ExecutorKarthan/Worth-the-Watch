@@ -1,24 +1,19 @@
+/*Applies style to everything in the body tag.*/
 body{
     background-color: beige;
 }
 
-footer{
-    position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: black;
-  text-align: center;
-}
-
+/*Applies style to everything in the nav-link ID and the home-headlines class.*/
 #nav-link, .home-headlines{
     color: white !important;
 }
 
+/*Applies style to everything in the jumbotron class.*/
 .jumbotron{
     text-align:center !important;
 }
 
+/*This section gets rid of the underlines on links and makes the text color black.*/
 a:link { 
     text-decoration: none; 
     color: black;
@@ -36,32 +31,39 @@ a:active {
     color: black;
 }
 
+/*Aligns the search-section to the center.*/
 .search-section{
     text-align: center;
 }
 
+/*Gives the logout-confirmation a top margin and a transparent background.*/
 .logout-confirmation {
     margin-top: 50px;
     background-color: transparent;
 }
 
+/*Sizes all images.*/
 img{
     max-width: 50%;
     max-height: 50%;
 }
 
+/*Styles everything with the my-dashboard-reviews and dashboard-new-review classes to have a transparent background.*/
 .my-dashboard-reviews, .dashboard-new-review {
     background-color: transparent;
 }
 
+/*Styles the home-headline to have no text decoration.*/
 .home-headline{
     text-decoration: none;
 }
 
+/*Styles everything with the scratch-form and review-container classes to have a white background.*/
 .scratch-form, .review-container{
     background-color: white;
 }
 
+/*Gives the review header a border with a black background and white text.*/
 .review-header{
     border-width: 3px !important;
     background-color: black;
