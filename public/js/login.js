@@ -28,19 +28,14 @@ const reviewerLogin = async (event) => {
         else {
             const responseData = await response.json();
             //Provide the user the error message
-            if (response.status === 401 && responseData.message.includes('Incorrect email or password')) {
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'alert alert-danger mt-2';
-                errorMessage.innerHTML = 'Incorrect email or password';
-                document.querySelector('.login-form').appendChild(errorMessage);
-                //Have the message fade after 2 seconds
-                setTimeout(() => {
-                    errorMessage.remove();
-                }, 2000);
-            } 
-            else {
-                alert(responseData.message);
-            }
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'alert alert-danger mt-2';
+            errorMessage.innerHTML = 'Incorrect email or password';
+            document.querySelector('.login-form').appendChild(errorMessage);
+            //Have the message fade after 2 seconds
+            setTimeout(() => {
+                errorMessage.remove();
+            }, 2000); 
         }
     }
 };
